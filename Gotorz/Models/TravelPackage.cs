@@ -1,4 +1,4 @@
-﻿namespace Gotorz.Components.Models
+﻿namespace Gotorz.Models
 {
     // This model class is where we assemble the Travel Package object
     // for use in the frontend part of the program. It contains properties

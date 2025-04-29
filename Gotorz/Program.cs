@@ -1,6 +1,5 @@
 ﻿using Gotorz.Client.Pages;
 using Gotorz.Components;
-using Gotorz.Components.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Gotorz.Auth;
+using Gotorz.Services;
 
 
 
