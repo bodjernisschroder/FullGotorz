@@ -1,4 +1,4 @@
-﻿namespace Gotorz.Components.Models
+﻿namespace Gotorz.Models
 {
     public class FlightMinPrice
     {

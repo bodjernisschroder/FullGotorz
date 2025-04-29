@@ -1,6 +1,6 @@
-﻿using Gotorz.Components.Models;
+﻿using Gotorz.Models;
 
-namespace Gotorz.Components.Services
+namespace Gotorz.Services
 {
     public interface ITravelService
     {
