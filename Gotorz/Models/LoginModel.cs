@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Gotorz.Components.Models
+namespace Gotorz.Models
 {
     // Model class that represents login form input
     public class LoginModel

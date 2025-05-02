@@ -1,22 +1,23 @@
 ﻿using System.Text.Json.Serialization;
-namespace Gotorz.Components.Models
+namespace Gotorz.Models
 {
-    public class SearchLocationsFrom
+    public class SearchLocationsTo
     {
         public string id { get; set; }
         public bool status { get; set; }
         public string message { get; set; }
         public long timestamp { get; set; }
-        public SearchLocationsFromData data { get; set; }
+        public SearchLocationsToData data { get; set; }
     }
 
-    public class SearchLocationsFromData
+    public class SearchLocationsToData
     {
         public string id { get; set; }
         [JsonPropertyName("$values")]
-        public SearchLocationsFromValues[] values { get; set; }
+        public SearchLocationsToValues[] values { get; set; }
     }
-    public class SearchLocationsFromValues
+
+    public class SearchLocationsToValues
     {
         public string id { get; set; }
         public string type { get; set; }
@@ -29,12 +30,12 @@ namespace Gotorz.Components.Models
         public string countryName { get; set; }
         public string countryNameShort { get; set; }
         public string photoUri { get; set; }
-        public SearchLocationsFromDistancetocity distanceToCity { get; set; }
+        public SearchLocationsToDistancetocity distanceToCity { get; set; }
         public string parent { get; set; }
         public object region { get; set; }
     }
 
-    public class SearchLocationsFromDistancetocity
+    public class SearchLocationsToDistancetocity
     {
         public string id { get; set; }
         public float value { get; set; }

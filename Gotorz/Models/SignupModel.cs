@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Gotorz.Components.Models
+namespace Gotorz.Models
 {   
     // Model class that represents signup form input,
     // and includes custom validation for email, password requirements, and confirmation match

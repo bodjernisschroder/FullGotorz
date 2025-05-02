@@ -1,9 +1,9 @@
-﻿using Gotorz.Components.Models;
+﻿using Gotorz.Models;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Xml.Linq;
 
-namespace Gotorz.Components.Services
+namespace Gotorz.Services
 {
     public class TravelService : ITravelService
     {
@@ -208,9 +208,9 @@ namespace Gotorz.Components.Services
                     FlightDepartureTime = directFlights.data.flightOffers[0].segments[0].departureTime ?? "Unknown Departure",
                     FlightArrivalTime = directFlights.data.flightOffers[0].segments[0].arrivalTime ?? "Unknown Arrival",
                     FlightStops = (directFlights.data.flightOffers[0].segments[0].legs?.Count ?? 1) - 1,
-                    FlightDurationMinutes = (directFlights.data.flightOffers[0].segments[0].totalTime / 60),
-                    FlightPrice = (directFlights.data.flightOffers[0].priceBreakdown.total.units)
-                                + (directFlights.data.flightOffers[0].priceBreakdown.total.nanos / 1_000_000_000m),
+                    FlightDurationMinutes = directFlights.data.flightOffers[0].segments[0].totalTime / 60,
+                    FlightPrice = directFlights.data.flightOffers[0].priceBreakdown.total.units
+                                + directFlights.data.flightOffers[0].priceBreakdown.total.nanos / 1_000_000_000m,
 
                     // HOTEL
                     HotelId = bestHotel?.hotel_id ?? 0,
