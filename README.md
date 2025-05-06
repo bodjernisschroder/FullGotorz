@@ -1,6 +1,14 @@
 ## Gotorz - Exam Project Team 7 (DMOoF24)
 
-Welcome to **Gotorz**, our 3rd semester exam project that combines a Blazor Web App and a supporting Web API architecture for a complete travel package booking experience!
+**Gotorz** is a full-stack travel booking system developed as our 3rd semester exam project.  
+It allows users to search and book complete travel packages—including flights and hotels—through an interactive Blazor Server web application.
+
+The system is built using a multi-project architecture:
+- A Blazor frontend for the user interface
+- Two backend APIs: one for user authentication and one for travel data (flights/hotels)
+- The TravelBridgeAPI is designed to run locally but is also hosted externally for convenience during development. It communicates with the frontend via RESTful HTTP
+
+The solution is designed to simulate a real-world, modular web application, emphasizing clean separation of concerns, API integration, and modern .NET development practices.
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
 ![Blazor](https://img.shields.io/badge/Blazor-Server-green)
