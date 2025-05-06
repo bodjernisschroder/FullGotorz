@@ -28,8 +28,8 @@ Console.WriteLine();
 
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console() //Serilog er sat som logger til konsol
-    .WriteTo.SQLite("TravelBridgeLogs.db")  // Serilog er sat til at skrive til database (håber vi!)
+    .WriteTo.Console() // Serilog is set to write to console
+    .WriteTo.SQLite("TravelBridgeLogs.db")  // Serilog is set to write to SQLite database
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -69,11 +69,34 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+if (string.IsNullOrEmpty(environment))
+{
+    environment = "Development"; // If the environment is not set, default to Development
+}
+
+
+
+Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
 // Add configuration from appsettings.json.
-builder.Configuration
+if (environment == "Development")
+{
+    builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddUserSecrets<Program>() //Henter secrets fra user-secrets
-    .AddEnvironmentVariables(); // Henter env vars fra Github Actions
+
+    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+    .AddUserSecrets<Program>() // Fetching secrets from user-secrets
+    .AddEnvironmentVariables(); // Fetching secrets from environment variables
+}
+else
+{
+    builder.Configuration
+        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+        .AddUserSecrets<Program>() // Fetching secrets from user-secrets
+        .AddEnvironmentVariables(); // Fetching secrets from environment variables
+}
+    
 
 // Get the API keys from configuration.
 var apiKeys = new List<string>
@@ -133,6 +156,7 @@ builder.Services.AddScoped<HandleHotelPhotos>();
 builder.Services.AddTransient<IApiKeyValidation, ApiKeyValidation>();
 builder.Services.AddScoped<ApiKeyAuthFilter>();
 
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -147,8 +171,6 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
         options.JsonSerializerOptions.WriteIndented = true;
     });
-
-Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
 
 var app = builder.Build();
 

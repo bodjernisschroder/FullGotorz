@@ -24,12 +24,17 @@
                     $" - user-apiKey is null or empty.");
                 return false;
             }
-            string? apiKey = _configuration.GetValue<string>(Constants.ApiKeyName);
-
+            Console.WriteLine();
             Console.WriteLine($"userApiKey: {userApiKey}");
             Console.WriteLine("userAPIKeyLength = " + userApiKey.Length);
+            Console.WriteLine();
+
+            string? apiKey = _configuration.GetValue<string>(Constants.ApiKeyName);
+
+            
             Console.WriteLine($"apiKey: {apiKey}");
             Console.WriteLine("apiKeyLength = " + apiKey.Length);
+            Console.WriteLine();
 
             if (apiKey == null || apiKey != userApiKey)
             {

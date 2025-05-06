@@ -19,7 +19,6 @@ namespace TravelBridgeAPI.CustomAttributes
                 context.Result = new BadRequestObjectResult("API key header mangler.");
                 return;
             }
-
             if (!_apiKeyValidation.IsValidApiKey(extractedApiKey))
             {
                 context.Result = new UnauthorizedObjectResult("Ugyldig API key.");

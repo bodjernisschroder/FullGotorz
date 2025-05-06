@@ -20,7 +20,6 @@ Thumbs.db
 ehthumbs.db
 
 # ASP.NET Files
-**/appsettings.json
 **/appsettings.*.json
 
 # Logs
