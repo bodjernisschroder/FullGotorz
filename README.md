@@ -53,10 +53,19 @@ Each project is a standalone application but is designed to work together as par
 
 1. Clone the repository.
 2. Open `Gotorz.sln` in Visual Studio.
-3. Configure your IDE to launch **AuthAndUserAPI** and **Gotorz** projects simultaneously.
+3. Set up Visual Studio to start **all four projects** simultaneously:
+   - `Gotorz` (Blazor Server frontend)
+   - `AuthAndUserAPI` (Authentication API)
+   - `TravelBridgeAPI` (Flights & Hotels API)
+   - `Gotorz.Client` (Included for structure—runs but minimal)
 4. Run the solution.
 
 **Note:**  
-You do **not** need to run `TravelBridgeAPI` or `Gotorz.Client`.  
-- `TravelBridgeAPI` is hosted 24/7 on a team member's home server.  
-- `Gotorz.Client` is included only for structural purposes.
+To run multiple startup projects in Visual Studio:
+- Right-click the **solution** in Solution Explorer and choose **"Set Startup Projects..."**  
+- In the dialog, select **"Multiple startup projects"**  
+- Set **Action** to `Start` for all four projects  
+- Reorder if necessary (optional)  
+- Click **OK**, then run the solution normally
+
+This ensures the frontend and both APIs are available and communicating as intended.
