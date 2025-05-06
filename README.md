@@ -76,17 +76,3 @@ To run multiple startup projects in Visual Studio:
 - Click **OK**, then run the solution
 
 This ensures the frontend and both APIs are available and communicating as intended.
-
----
-
-                                                   __  __
-  ▄▄█▀▀▀█▄█           ██                           \ `/ |
-▄██▀     ▀█           ██                            \__`!
-██▀       ▀  ▄██▀██▄██████  ▄██▀██▄▀███▄███ █▀▀▀███ / ,' `-.__________________
-██          ██▀   ▀██ ██   ██▀   ▀██ ██▀ ▀▀ ▀  ███ '-'\\_____                  `-.
-██▄    ▀██████     ██ ██   ██     ██ ██       ███     <____()-=O=O=O=O=O=[]====--)
-▀██▄     ██ ██▄   ▄██ ██   ██▄   ▄██ ██      ███  ▄     `.___ ,-----,_______...-'
-  ▀▀███████  ▀█████▀  ▀████ ▀█████▀▄████▄   ███████          /    .'
-                                                            /   .'
-                                                           /  .'
-                                                           `-'
