@@ -1,10 +1,16 @@
-Gotorz - Exam Project Team 7
+## Gotorz - Exam Project Team 7 (DMOoF24)
 
 Welcome to **Gotorz**, our final exam project that combines a Blazor Web App and a supporting Web API architecture for a complete travel package booking experience!
 
+![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
+![Blazor](https://img.shields.io/badge/Blazor-Server-green)
+![Entity Framework](https://img.shields.io/badge/Entity_Framework-Core-blue)
+![SQLite](https://img.shields.io/badge/SQLite-DB-lightgrey)
+![Project Type](https://img.shields.io/badge/Project-Exam--Final-orange)
+
 ---
 
-Technologies Used
+## Technologies Used
 
 - **.NET 8** (C#)
 - **Blazor Server**
@@ -16,7 +22,7 @@ Technologies Used
 
 ---
 
-Team Members
+## Team Members
 
 | Name        | Responsibility                  |
 |:------------|:---------------------------------|
@@ -27,25 +33,30 @@ Team Members
 
 ---
 
-Project Structure
+## Project Structure
 
-FullGotorz/  
-AuthAndUserAPI/     # User authentication API  
-Gotorz/             # Blazor Server application (frontend)  
-Gotorz.Client/      # (Minimal, kept for project separation)  
-TravelBridgeAPI/    # Flights and hotels database API  
-Gotorz.sln          # Full solution file  
-.gitignore          # Git ignore rules  
+| Path/Project           | Description                                             |
+|:------------------------|:--------------------------------------------------------|
+| `FullGotorz/`          | Root directory for the entire solution                 |
+| `AuthAndUserAPI/`      | User authentication API                                |
+| `Gotorz/`              | Blazor Server application (frontend)                   |
+| `Gotorz.Client/`       | Minimal project for separation (not in active use)     |
+| `TravelBridgeAPI/`     | API for flights and hotels (hosted externally)         |
+| `Gotorz.sln`           | Full Visual Studio solution file                       |
+| `.gitignore`           | Git ignore rules                                       |
 
-Each project is a standalone application but designed to work together as part of the Gotorz system.
+Each project is a standalone application but is designed to work together as part of the Gotorz system.
 
 ---
 
-Running The Project
+## Running the Project
 
-1. Clone the respository
-2. Doubleclick the .sln file in the root folder
-3. Set your IDE to start the AuthAndUserAPI and Gotorz projects at the same time
-4. Run the application
+1. Clone the repository.
+2. Open `Gotorz.sln` in Visual Studio.
+3. Configure your IDE to launch **AuthAndUserAPI** and **Gotorz** projects simultaneously.
+4. Run the solution.
 
-Leave TravelBridgeAPI and Gotorz.Client off. The project is only running on the client side, and the TravelBridgeAPI is running 24/7 on a teammembers home server, so there's no need to run it locally.
+**Note:**  
+You do **not** need to run `TravelBridgeAPI` or `Gotorz.Client`.  
+- `TravelBridgeAPI` is hosted 24/7 on a team member's home server.  
+- `Gotorz.Client` is included only for structural purposes.
