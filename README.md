@@ -24,7 +24,7 @@ The solution is designed to simulate a real-world, modular web application, emph
 - **Blazor Server**
 - **ASP.NET Core Web API**
 - **Entity Framework Core**
-- **SQLite** (for the TravelBridgeAPI database)
+- **SQLite** (for the TravelBridgeAPI & AuthAndUserAPI databases)
 - **REST APIs**
 - **HTTPClient** (for API communication)
 
