@@ -11,6 +11,9 @@
         }
         public bool IsValidApiKey(string userApiKey)
         {
+            Console.WriteLine($"userApiKey: {userApiKey}");
+            Console.WriteLine("userAPIKeyLength = " + userApiKey.Length);
+            
             _logger.LogInformation
                 ($"[LOG] Request started: {DateTime.Now}" +
                 $" - Validating user-apiKey.");
@@ -22,7 +25,12 @@
                 return false;
             }
             string? apiKey = _configuration.GetValue<string>(Constants.ApiKeyName);
-            
+
+            Console.WriteLine($"userApiKey: {userApiKey}");
+            Console.WriteLine("userAPIKeyLength = " + userApiKey.Length);
+            Console.WriteLine($"apiKey: {apiKey}");
+            Console.WriteLine("apiKeyLength = " + apiKey.Length);
+
             if (apiKey == null || apiKey != userApiKey)
             {
                 _logger.LogWarning(

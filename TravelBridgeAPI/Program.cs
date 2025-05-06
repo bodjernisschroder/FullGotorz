@@ -25,6 +25,8 @@ Console.WriteLine("                                                           `-
 Console.ResetColor();
 Console.WriteLine();
 
+
+
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console() //Serilog er sat som logger til konsol
     .WriteTo.SQLite("TravelBridgeLogs.db")  // Serilog er sat til at skrive til database (håber vi!)
@@ -146,7 +148,7 @@ builder.Services.AddControllers()
         options.JsonSerializerOptions.WriteIndented = true;
     });
 
-
+Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
 
 var app = builder.Build();
 
