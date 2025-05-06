@@ -1,6 +1,6 @@
 ## Gotorz - Exam Project Team 7 (DMOoF24)
 
-Welcome to **Gotorz**, our final exam project that combines a Blazor Web App and a supporting Web API architecture for a complete travel package booking experience!
+Welcome to **Gotorz**, our 3rd semester exam project that combines a Blazor Web App and a supporting Web API architecture for a complete travel package booking experience!
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
 ![Blazor](https://img.shields.io/badge/Blazor-Server-green)
