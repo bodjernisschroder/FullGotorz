@@ -24,12 +24,12 @@ Welcome to **Gotorz**, our final exam project that combines a Blazor Web App and
 
 ## Team Members
 
-| Name        | Responsibility                  |
-|:------------|:---------------------------------|
-| **Bo**      | Blazor Web Application (Gotorz)  |
-| **Burak**   | Blazor Web Application (Gotorz)  |
-| **Peter**   | TravelBridgeAPI development      |
-| **Kenneth** | TravelBridgeAPI development      |
+| Name        | Responsibilities                                                                 |
+|:------------|:----------------------------------------------------------------------------------|
+| **Bo**      | Blazor Web Application (Gotorz), integrated frontend with TravelBridgeAPI        |
+| **Burak**   | Blazor Web Application (Gotorz), developed AuthAndUserAPI (authentication logic) |
+| **Peter**   | Developed TravelBridgeAPI, handled Docker configuration                          |
+| **Kenneth** | Developed TravelBridgeAPI, implemented logging functionality                     |
 
 ---
 
@@ -65,7 +65,6 @@ To run multiple startup projects in Visual Studio:
 - Right-click the **solution** in Solution Explorer and choose **"Set Startup Projects..."**  
 - In the dialog, select **"Multiple startup projects"**  
 - Set **Action** to `Start` for all four projects  
-- Reorder if necessary (optional)  
-- Click **OK**, then run the solution normally
+- Click **OK**, then run the solution
 
 This ensures the frontend and both APIs are available and communicating as intended.
