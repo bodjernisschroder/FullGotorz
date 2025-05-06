@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  userauthapi:
+    image: userauthapi:latest
+    build:
+      context: .
+      dockerfile: AuthAndUserAPI/Dockerfile
+    container_name: userauthapi
+    ports:
+      - "7065:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Deployment
+      - Jwt__Key=your_auth_jwt_key
+    networks:
+      - gotorz-network
+
+  travelbridgeapi:
+    image: travelbridgeapi:latest
+    build:
+      context: .
+      dockerfile: TravelBridgeAPI/Dockerfile
+    container_name: travelbridgeapi
+    ports:
+      - "7144:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Deployment
+      - RapidApi__ApiKey=your_travel_api_key
+      - RapidApi__ApiKey2=your_travel_api_key2
+      - apiKey=your_travel_api_key
+    networks:
+      - gotorz-network
+
+  gotorz:
+    image: gotorz:latest
+    build:
+      context: .
+      dockerfile: Gotorz/Dockerfile
+    container_name: gotorz
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Deployment
+      - TravelApi__ApiKey=your_travel_api_key
+      - Jwt__Key=your_gotorz_jwt_key
+    networks:
+      - gotorz-network
+    depends_on:
+      - userauthapi
+      - travelbridgeapi
+
+networks:
+  gotorz-network:
+    driver: bridge

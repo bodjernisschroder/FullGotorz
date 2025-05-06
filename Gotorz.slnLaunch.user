@@ -4,7 +4,8 @@
     "Projects": [
       {
         "Path": "Gotorz\\Gotorz.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       },
       {
         "Path": "Gotorz.Client\\Gotorz.Client.csproj",
@@ -12,11 +13,13 @@
       },
       {
         "Path": "AuthAndUserAPI\\AuthAndUserAPI.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       },
       {
         "Path": "TravelBridgeAPI\\TravelBridgeAPI.csproj",
-        "Action": "Start"
+        "Action": "Start",
+        "DebugTarget": "http"
       }
     ]
   }
