@@ -79,7 +79,7 @@ This ensures the frontend and both APIs are available and communicating as inten
 
 The `TravelBridgeAPI`,  `Gotorz` and `AuthAndUserAPI` projects all require a valid `appsettings.Development.json` file with API and database configuration.  
 If it's missing or excluded from source control, please reach out to the team and we’ll provide it upon request.
-
+ 
 ---
 
 ```
