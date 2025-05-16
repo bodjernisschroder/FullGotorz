@@ -28,6 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+Console.WriteLine($"[DEBUG] Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
 
 //JWT Configuration
 var jwtKey = configuration["Jwt:Key"];

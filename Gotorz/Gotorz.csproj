@@ -39,4 +39,11 @@
     </Resource>
   </ItemGroup>
 
+	<ItemGroup>
+		<None Update="appsettings.Deployment.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+
 </Project>

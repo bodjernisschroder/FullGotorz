@@ -1,12 +1,7 @@
-﻿using Gotorz.Client.Pages;
-using Gotorz.Components;
+﻿using Gotorz.Components;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using Gotorz.Auth;
 using Gotorz.Services;
 
@@ -19,8 +14,21 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
 
+// Add authentication and authorization services
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
+Console.WriteLine($"[DEBUG] Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
+
 // Pulls the BaseURL from the AuthAndUserAPI and registers the service
 var apiBaseUrl = builder.Configuration["AuthAndUserAPI:BaseUrl"];
+Console.WriteLine($"[DEBUG] AuthAndUserAPIUrl: {apiBaseUrl}");
+Console.WriteLine($"[DEBUG] TravelAPI Url: {builder.Configuration["TravelApi:BaseUrl"]}");
+
+
 
 builder.Services.AddHttpClient("AuthAndUserAPI", client =>
 {

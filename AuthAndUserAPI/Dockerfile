@@ -1,39 +1,29 @@
-# Base image for runtime
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
-# SDK image for build
+# Build stage using the .NET 8.0 SDK image
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-# Copy csproj and restore dependencies
-COPY ["AuthAndUserAPI.csproj", "."]
+# Copy the project file (we're in the build context: AuthAndUserAPI/)
+COPY AuthAndUserAPI.csproj .
 RUN dotnet restore "./AuthAndUserAPI.csproj"
 
-# Copy the rest of the app
+# Copy the rest of the code and build the project
 COPY . .
+RUN dotnet build "AuthAndUserAPI.csproj" -c Release -o /app/build
+RUN dotnet publish "AuthAndUserAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-# Build
-RUN dotnet build "AuthAndUserAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-# Publish
-FROM build AS publish
-RUN dotnet publish "AuthAndUserAPI.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-# Final stage
-FROM base AS final
+# Runtime stage using the .NET 8.0 ASP.NET Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
-# Copy published output
-COPY --from=publish /app/publish .
+# Copy the published output from the build stage
+COPY --from=build /app/publish .
 
-# Copy SQLite database file
+# Copy the SQLite database file to the container
 COPY AuthDb.sqlite ./AuthDb.sqlite
 
-# Set environment variable to Development (optional)
-ENV ASPNETCORE_ENVIRONMENT=Development
-
+# Start the application
 ENTRYPOINT ["dotnet", "AuthAndUserAPI.dll"]
+
+# Set environment to Deployment
+ENV ASPNETCORE_ENVIRONMENT=Deployment
+

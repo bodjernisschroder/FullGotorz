@@ -68,35 +68,50 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
-var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-if (string.IsNullOrEmpty(environment))
-{
-    environment = "Development"; // If the environment is not set, default to Development
-}
-
-
-
-Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
-// Add configuration from appsettings.json.
-if (environment == "Development")
-{
-    builder.Configuration
+builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
 
-    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
-    .AddUserSecrets<Program>() // Fetching secrets from user-secrets
-    .AddEnvironmentVariables(); // Fetching secrets from environment variables
-}
-else
-{
-    builder.Configuration
-        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-        .AddUserSecrets<Program>() // Fetching secrets from user-secrets
-        .AddEnvironmentVariables(); // Fetching secrets from environment variables
-}
-    
+Console.WriteLine($"[DEBUG] Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
+Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
+
+//var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+//if (string.IsNullOrEmpty(environment))
+//{
+//    environment = "Development"; // If the environment is not set, default to Development
+//}
+
+
+
+//Console.WriteLine($"[DEBUG] Current Environment: {builder.Environment.EnvironmentName}");
+//// Add configuration from appsettings.json.
+//if (environment == "Development")
+//{
+//    builder.Configuration
+//    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+
+//    .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+//    .AddUserSecrets<Program>() // Fetching secrets from user-secrets
+//    .AddEnvironmentVariables(); // Fetching secrets from environment variables
+//}
+//else if(environment == "Deployment")
+//{
+//    builder.Configuration
+//     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//     .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true)
+//     .AddUserSecrets<Program>() // Fetching secrets from user-secrets
+//     .AddEnvironmentVariables(); // Fetching secrets from environment variables
+//}
+//else
+//{
+//    builder.Configuration
+//        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//        .AddUserSecrets<Program>() // Fetching secrets from user-secrets
+//        .AddEnvironmentVariables(); // Fetching secrets from environment variables
+//}
+
 
 // Get the API keys from configuration.
 var apiKeys = new List<string>

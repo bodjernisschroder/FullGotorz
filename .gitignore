@@ -36,3 +36,5 @@ node_modules/
 # Build results
 build/
 publish/
+
+.env
