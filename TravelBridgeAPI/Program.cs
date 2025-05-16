@@ -120,11 +120,16 @@ var apiKeys = new List<string>
     builder.Configuration["RapidApi:ApiKey2"],
 };
 
-Console.WriteLine("[INFO] External ApiKeys Loaded");
+if (string.IsNullOrEmpty(apiKeys[0]) == false && string.IsNullOrEmpty(apiKeys[1]) == false)
+    Console.WriteLine("[INFO] External ApiKeys Loaded");
 
 var baseUrl = builder.Configuration["RapidApi:BaseUrl"] ?? Environment.GetEnvironmentVariable("RapidApi:BaseUrl");
 
-Console.WriteLine($"[INFO] External BaseURL Loaded."); // Debugging log
+if(string.IsNullOrEmpty(baseUrl) == false)
+{
+    Console.WriteLine($"[INFO] External BaseURL Loaded."); // Debugging log
+}
+
 
 if (string.IsNullOrEmpty(baseUrl))
 {

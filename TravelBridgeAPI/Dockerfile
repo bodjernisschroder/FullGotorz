@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 # Copy config file
-COPY appsettings.Deployment.json ./appsettings.Deployment.json
+# COPY appsettings.Deployment.json ./appsettings.Deployment.json
 
 
 # Copy project file and restore dependencies
