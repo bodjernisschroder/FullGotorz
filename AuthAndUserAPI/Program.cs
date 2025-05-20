@@ -28,6 +28,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
+Console.WriteLine($"[DEBUG] Environment: {Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")}");
 
 //JWT Configuration
 var jwtKey = configuration["Jwt:Key"];
@@ -70,6 +71,10 @@ app.MapControllers();
 // Create a new scope to retrieve scoped services (UserManager and RoleManager)
 using (var scope = app.Services.CreateScope())
 {
+    // Get the database context and apply any pending migrations
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 

@@ -1,0 +1,56 @@
+services:
+  userauthapi:
+    image: userauthapi:latest
+    build:
+      context: ./AuthAndUserAPI
+      dockerfile: Dockerfile
+    container_name: userauthapi
+    ports:
+      - "7065:8080"  # Korrigeret portbinding
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - Jwt__Key=${JWT_KEY}
+      - ConnectionStrings__DefaultConnection=Data Source=/app/AuthDb.sqlite; 
+    networks:
+      - gotorz-network
+    volumes:
+      - ./AuthAndUserAPI/AuthDb.sqlite:/app/AuthDb.sqlite  # Binder SQLite database fil
+
+  travelbridgeapi:
+    image: travelbridgeapi:latest
+    build:
+      context: ./TravelBridgeAPI
+      dockerfile: Dockerfile
+    container_name: travelbridgeapi
+    ports:
+      - "7144:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - RapidApi__ApiKey=${RAPID_APIKEY}
+      - RapidApi__ApiKey2=${RAPID_APIKEY2}
+      - apiKey=${TRAVEL_API_KEY}
+    networks:
+      - gotorz-network
+
+  gotorz:
+    image: gotorz:latest
+    build:
+      context: .
+      dockerfile: Gotorz/Dockerfile
+    container_name: gotorz
+    ports:
+      - "5050:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - DOTNET_ENVIRONMENT=Production
+      - TravelApi__ApiKey=${TRAVEL_API_KEY}
+      - Jwt__Key=${JWT_KEY}
+    networks:
+      - gotorz-network
+    depends_on:
+      - userauthapi
+      - travelbridgeapi
+
+networks:
+  gotorz-network:
+    driver: bridge

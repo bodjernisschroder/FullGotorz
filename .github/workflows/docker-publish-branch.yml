@@ -1,0 +1,55 @@
+name: Build & Push Test Docker Images (non-main branches)
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+env:
+  REGISTRY: docker.io
+  IMAGE_OWNER: pibech
+
+jobs:
+  build-and-push-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Extract branch name
+      id: vars
+      run: echo "BRANCH_TAG=$(echo ${GITHUB_REF#refs/heads/} | tr '/' '-')" >> $GITHUB_ENV
+
+    - name: Build and push userauthapi
+      uses: docker/build-push-action@v5
+      with:
+        context: ./AuthAndUserAPI
+        file: ./AuthAndUserAPI/Dockerfile
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/userauthapi:${{ env.BRANCH_TAG }}
+
+    - name: Build and push travelbridgeapi
+      uses: docker/build-push-action@v5
+      with:
+        context: ./TravelBridgeAPI
+        file: ./TravelBridgeAPI/Dockerfile
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/travelbridgeapi:${{ env.BRANCH_TAG }}
+
+    - name: Build and push gotorz
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Gotorz/Dockerfile
+        push: true
+        tags: ${{ env.REGISTRY }}/${{ env.IMAGE_OWNER }}/gotorz:${{ env.BRANCH_TAG }}

@@ -22,6 +22,7 @@ namespace Gotorz.Services
             // stores it in local variables for use in our API calls
             string apiKey = _configuration["TravelApi:ApiKey"];
             string baseUrl = _configuration["TravelApi:BaseUrl"];
+            
 
             // Convert the received DateTime parameters to strings
             // of the correct date format needed for the API calls below
